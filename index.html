@@ -2,27 +2,136 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Vinam Birthday ❤️</title>
+<title>Happy Birthday Maman Maza </title>
 
 <style>
 
-/* BODY */
-
 body{
 margin:0;
+padding:0;
 background:black;
-color:white;
-font-family:Arial, sans-serif;
+font-family:Arial;
 overflow:hidden;
+color:white;
 text-align:center;
 }
 
+/* Background photo */
 
-/* COUNTDOWN SCREEN */
+.hero{
 
-#countdownScreen{
+position:relative;
+
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+}
+
+.hero img{
+
+width:300px;
+
+border-radius:20px;
+
+box-shadow:0 0 40px red;
+
+animation:float 6s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+0%,100%{transform:translateY(0)}
+
+50%{transform:translateY(-20px)}
+
+}
+
+
+/* Typing text */
+
+.message{
+
+margin-top:30px;
+
+font-size:28px;
+
+max-width:800px;
+
+}
+
+
+/* Button */
+
+button{
+
+padding:15px 30px;
+
+font-size:20px;
+
+background:red;
+
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+margin-top:20px;
+
+}
+
+
+/* Hearts */
+
+.heart{
+
+position:absolute;
+
+color:red;
+
+animation:fall linear infinite;
+
+font-size:24px;
+
+}
+
+@keyframes fall{
+
+0%{
+
+transform:translateY(-100px);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(100vh);
+
+opacity:0;
+
+}
+
+/* INTRO SCREEN */
+
+#intro{
 
 position:fixed;
+
+top:0;
+
+left:0;
 
 width:100%;
 
@@ -36,113 +145,153 @@ justify-content:center;
 
 align-items:center;
 
+z-index:9999;
+
 flex-direction:column;
 
-z-index:9999;
+transition:opacity 2s;
 
 }
 
+.intro-box{
 
-#nameGlow{
+text-align:center;
 
-font-size:60px;
+color:white;
+
+}
+
+.intro-box h1{
+
+font-size:50px;
 
 color:red;
 
-text-shadow:
-0 0 10px red,
-0 0 20px red,
-0 0 40px red;
-
-animation: glow 2s infinite alternate;
+animation:pulse 1.5s infinite;
 
 }
 
+.intro-box button{
 
-@keyframes glow{
+padding:15px 30px;
 
-from{ text-shadow:0 0 10px red;}
+font-size:20px;
 
-to{ text-shadow:0 0 40px white;}
+background:red;
 
-}
+color:white;
 
+border:none;
 
+border-radius:10px;
 
-#timer{
-
-font-size:50px;
+cursor:pointer;
 
 margin-top:20px;
 
 }
 
+@keyframes pulse{
 
+0%{transform:scale(1)}
 
-/* MAIN CONTENT */
+50%{transform:scale(1.1)}
 
-#mainContent{
+100%{transform:scale(1)}
 
-display:none;
+}
+/* INTRO SCREEN */
 
-height:100vh;
+#intro{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:black;
+
+display:flex;
 
 justify-content:center;
 
 align-items:center;
 
+z-index:9999;
+
 flex-direction:column;
 
-}
-
-
-.hero img{
-
-width:300px;
-
-border-radius:20px;
-
-box-shadow:0 0 40px red;
+transition:opacity 2s;
 
 }
 
+.intro-box{
 
-/* FIREWORK */
+text-align:center;
 
-.firework{
-
-position:absolute;
-
-width:5px;
-
-height:5px;
-
-background:white;
-
-border-radius:50%;
-
-animation: explode 1s ease-out forwards;
+color:white;
 
 }
 
+.intro-box h1{
 
-@keyframes explode{
+font-size:50px;
 
-0%{
+color:red;
 
-transform:translate(0,0);
+animation:pulse 1.5s infinite;
 
-opacity:1;
+}
+
+.intro-box button{
+
+padding:15px 30px;
+
+font-size:20px;
+
+background:red;
+
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+margin-top:20px;
 
 }
 
-100%{
+@keyframes pulse{
 
-transform:translate(var(--x), var(--y));
+0%{transform:scale(1)}
 
-opacity:0;
+50%{transform:scale(1.1)}
+
+100%{transform:scale(1)}
 
 }
+
+.countdown{
+
+font-size:40px;
+
+color:red;
+
+margin-top:20px;
+
+font-weight:bold;
+
+text-shadow:0 0 10px white;
+
+}
+
 
 }
 
@@ -152,35 +301,40 @@ opacity:0;
 
 <body>
 
+<!-- SURPRISE INTRO SCREEN -->
 
+<div id="intro">
 
-<!-- COUNTDOWN SCREEN -->
+    <div class="intro-box">
 
-<div id="countdownScreen">
+        <h1> HAPPY BIRTHDAY TO YOU Vinam </h1>
 
-<div id="nameGlow">Happy Birthday Vinam</div>
+        <p>This is for you</p>
 
-<div id="timer"></div>
+        <button onclick="openSurprise()">Click to Open</button>
+
+    </div>
 
 </div>
 
 
-
-<!-- MAIN CONTENT -->
-
-<div id="mainContent" class="hero">
+<div class="hero">
 
 <img src="vinn.png">
 
-<h1>Happy Birthday My Autan Mata ❤️</h1>
+<div id="countdown" class="countdown"></div>
+
+
+<div class="message" id="text"></div>
+
+<button onclick="start()">It's Your Day 🎵</button>
 
 </div>
-
 
 
 <audio id="music" loop>
 
-<source src="WizKid-Fever.mp3" type="audio/mpeg">
+<source src="Wizki-Fever.mp3">
 
 </audio>
 
@@ -189,108 +343,145 @@ opacity:0;
 <script>
 
 
-// SET BIRTHDAY DATE HERE
+const message = `
 
-const birthday = new Date("March 08, 2026 00:00:00").getTime();
+My Dearest Mi-Amor,   
 
-const timer = document.getElementById("timer");
+Happy Birthday to you Autan mata! ❤️ On this special day, I celebrate you the woman who has filled the life of many soul with endless love, joy, and meaning for so many memorable incredible years.  
 
-const screen = document.getElementById("countdownScreen");
+Your beauty, both inside and out, leaves me in awe every single day. Calling you the Queen isn’t just a title it’s a reflection of the respect, admiration, and care I have for you.  
 
-const main = document.getElementById("mainContent");
+Your laughter and smile is a favorite melody, your smile is a greatest treasure, and your heart is a home. I thank God every day for bringing you into my life and making every moment with you feel like a dream.  
+
+As we celebrate you today, know that we care for you grows stronger with each passing year. Here's to many more birthdays, shared dreams, and beautiful memories with you, Vee.  
+  
+
+Happy Birthday, Dear! 🎉💖 
+
+`;
+
+
+
+let i=0;
+
+function type(){
+
+if(i<message.length){
+
+document.getElementById("text").innerHTML+=message.charAt(i);
+
+i++;
+
+setTimeout(type,50);
+
+}
+
+}
+
+
+
+function start(){
+
+document.getElementById("music").play();
+
+type();
+
+}
+
+
+
+/* Hearts */
+
+function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.animationDuration=(Math.random()*3+3)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),6000);
+
+}
+
+setInterval(createHeart,300);
+
+
+function openSurprise(){
+
+const intro = document.getElementById("intro");
 
 const music = document.getElementById("music");
 
+intro.style.opacity = "0";
+
+setTimeout(()=>{
+
+intro.style.display="none";
+
+},2000);
 
 
-const countdown = setInterval(()=>{
+// start music
+
+music.play();
+
+
+// start typing if you have typing function
+
+if(typeof type === "function"){
+
+type();
+
+}
+
+}
+// SET HER BIRTHDAY DATE HERE
+const birthday = new Date("March 08, 2026 00:00:00").getTime();
+
+const countdown = document.getElementById("countdown");
+
+const timer = setInterval(function(){
 
 const now = new Date().getTime();
 
 const distance = birthday - now;
 
-
-
 if(distance < 0){
 
-clearInterval(countdown);
+clearInterval(timer);
 
-startCelebration();
+countdown.innerHTML = "❤️ Once again Happy Birthday Vee ❤️";
 
 return;
 
 }
 
+const days = Math.floor(distance / (1000*60*60*24));
 
+const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
 
-const d = Math.floor(distance/(1000*60*60*24));
+const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
 
-const h = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const seconds = Math.floor((distance % (1000*60)) / 1000);
 
-const m = Math.floor((distance%(1000*60*60))/(1000*60));
-
-const s = Math.floor((distance%(1000*60))/1000);
-
-
-
-timer.innerHTML = d+"d "+h+"h "+m+"m "+s+"s";
-
-
+countdown.innerHTML =
+days + "d " +
+hours + "h " +
+minutes + "m " +
+seconds + "s ";
 
 },1000);
 
 
 
-
-// START CELEBRATION
-
-function startCelebration(){
-
-screen.style.display="none";
-
-main.style.display="flex";
-
-music.play();
-
-fireworks();
-
-}
-
-
-
-
-// FIREWORKS
-
-function fireworks(){
-
-for(let i=0;i<100;i++){
-
-let f=document.createElement("div");
-
-f.className="firework";
-
-f.style.left=Math.random()*window.innerWidth+"px";
-
-f.style.top=Math.random()*window.innerHeight+"px";
-
-f.style.setProperty('--x',(Math.random()*200-100)+'px');
-
-f.style.setProperty('--y',(Math.random()*200-100)+'px');
-
-document.body.appendChild(f);
-
-setTimeout(()=>f.remove(),1000);
-
-}
-
-setTimeout(fireworks,800);
-
-}
-
-
-
 </script>
-
 
 
 </body>
